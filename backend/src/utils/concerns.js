@@ -23,59 +23,6 @@ async function generateConcerns(
     });
 
     let prompt = `
-You are a marketing expert creating a customer persona for a brand. Based on the following information, generate a detailed persona that includes demographics, personality traits, professional goals, challenges, and why the person would be interested in the brand.
-
-Brand Name: ${brandName}
-Product Description: ${productDesc}
-
-### Output (Return exactly ${numResponse} completely distinct and creative personas as an array in JSON format only.) ###
-{
-    "response"(${numResponse} response): [
-        {
-    "name": <Persona Name>,
-    "age": <Age>,
-    "gender": <Gender>,
-    "race": <Racial Background>,
-    "occupation": <Occupation>,
-    "location": <Location>,
-    "industry": <Industry>,
-    "background": {
-        "education": <Education (include college names)> (max 1 line),
-        "work_environment": <Work Environment> (max 2 lines),
-        "income": <Income> (max 1 line)
-    },
-    "hobbies": {
-        "personal_interests": <Personal interests>,
-        "work_related": <Work related interests>
-    }
-    "professional_goal": {
-        "primary_goal": <Primary_Goal>,
-        "secondary_goal": <Secondary_Goal>
-    }
-    "pain_points"(give at least 3): [
-    {
-    "title1": <Title>,
-    "description1": <Description>
-    }],
-    "usecase_product"(give at least 2): [
-        {
-        "title": <Title> (3-7 words),
-        "description": <Description> (Min 30 words, explain how the persona will use the product)
-        }
-    ],
-    "features_needed"(give at least 2): [
-        {
-        "feature": <Feature>,
-        "description": <Description> (Elaborate about feature in Min. 30 words)
-        }
-    ],
-}]}
-<end>    
-
-Generate this persona in a friendly and engaging way that marketers and business owners can relate to.
-  `;
-
-    prompt = `
   Based on the following details:
   Brand Name: ${brandName}
   Product Description**: ${productDesc}
@@ -91,6 +38,7 @@ Generate this persona in a friendly and engaging way that marketers and business
     
         "question": <Question>,
         "proposed_solution": <Answer> (Paragraph format)
+        "is_highlighted": <true/false> (Highlight the most important concerns, only one can be true)
       }
     ]
   }

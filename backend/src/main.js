@@ -1,6 +1,13 @@
 const express = require("express");
 const cors = require("cors");
+const fs = require("fs");
+
 const { generatePersona } = require("./utils/persona");
+const {competitorAnalysis} = require("./utils/competitor");
+const {generateBusinessPlan} = require("./utils/businessplan");
+const {generateMvp} = require("./utils/mvp");
+
+let production = false;
 
 const app = express();
 app.use(express.json());
@@ -23,6 +30,87 @@ app.post("/persona", async (req, res) => {
     const {personas} = await generatePersona(brandName, productDescription, numResponses);
 
     res.status(200).json({ personas });
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.post("/competitor", async (req, res) => {
+  try {
+    const { brandName, productDescription, businessType, industry, numResponses } = req.body;
+
+    if (!brandName || !productDescription || !businessType || !industry) {
+      return res
+        .status(400)
+        .json({ error: "Invalid Details send" });
+    }
+
+    if(!production) {
+      console.log("production")
+      const rawData = fs.readFileSync("src/data/competitor.json", "utf8")
+      const jsonData = await JSON.parse(rawData);
+      return res.status(200).json(jsonData);
+    }
+
+    const finalResponse = await competitorAnalysis(brandName, productDescription, industry, businessType, numResponses);
+    res.status(200).json({ result : finalResponse ? finalResponse : "No Competitor Found" });
+
+
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.post("/business-plan", async (req, res) => {
+  try {
+    const { brandName, productDescription, businessType, industry, numResponses } = req.body;
+
+    if (!brandName || !productDescription || !businessType || !industry) {
+      return res
+        .status(400)
+        .json({ error: "Invalid Details send" });
+    }
+
+    if(!production) {
+      console.log("production")
+      const rawData = fs.readFileSync("src/data/business-plan.json", "utf8")
+      const jsonData = await JSON.parse(rawData);
+      return res.status(200).json(jsonData);
+    }
+
+    const finalResponse = await generateBusinessPlan(brandName, productDescription, industry, businessType, numResponses);
+    return res.status(200).json({ result : finalResponse ? finalResponse : "No business plan Found" });
+
+
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.post("/mvp", async (req, res) => {
+  try {
+    const { brandName, productDescription, businessType, industry, numResponses } = req.body;
+
+    if (!brandName || !productDescription || !businessType || !industry) {
+      return res
+        .status(400)
+        .json({ error: "Invalid Details send" });
+    }
+
+    if(!production) {
+      console.log("production")
+      const rawData = fs.readFileSync("src/data/mvp.json", "utf8")
+      const jsonData = await JSON.parse(rawData);
+      return res.status(200).json(jsonData);
+    }
+
+    const finalResponse = await generateMvp(brandName, productDescription, industry, businessType, numResponses);
+    res.status(200).json({ result : finalResponse ? finalResponse : "No Competitor Found" });
+
+
   } catch (err) {
     console.log(err)
     res.status(500).json({ error: "Internal Server Error" });
