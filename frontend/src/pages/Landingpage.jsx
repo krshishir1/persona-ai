@@ -5,7 +5,7 @@ import HeroSection from '../components/HeroSection'
 function Landingpage() {
   return (
     <div>
-      <Navbar/>
+      {/* <Navbar/> */}
       <HeroSection/>
     </div>
   )

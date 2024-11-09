@@ -8,7 +8,7 @@ function Contact() {
     const[message,setMessage]=useState("");
   return (
     <div>
-       <div className="text-center pb-16  min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 md:px-40">
+       <div className="text-center pb-16 pt-36  min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 md:px-40">
           <h1 className="text-4xl md:text-5xl font-bold text-indigo-600 mb-6 pt-8">
             Get in Touch
           </h1>

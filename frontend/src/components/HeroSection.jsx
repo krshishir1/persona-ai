@@ -8,11 +8,11 @@ function HeroSection() {
     const navigate = useNavigate();
 
 const handleGenerateClick = () => {
-  navigate('/input-page');
+  navigate('/persona/details');
 };
   return (
    
-    <div className="relative min-h-screen bg-gradient-to-br from-white to-purple-100">
+    <div className="pt-36 min-h-screen bg-gradient-to-br from-white to-purple-100">
       
       <div className="absolute top-20 left-10 w-32 h-32 border-2 border-dashed border-gray-300 opacity-30"></div>
       <div className="absolute bottom-20 right-10 w-32 h-32 border-2 border-dashed border-gray-300 opacity-30"></div>

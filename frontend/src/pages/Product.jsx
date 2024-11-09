@@ -22,7 +22,7 @@ function Product() {
       ];
     
   return (
-    <div className='min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100'>
+    <div className='min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 pt-36'>
       <div className="text-center pb-16 pt-7">
           <h1 className="text-4xl md:text-5xl font-bold text-blue-500 mb-6">
             Transform Your User Understanding

@@ -48,26 +48,23 @@ async function generateConcerns(
     const result = await client.chat.completions.create({
       messages: [{ role: "system", content: prompt }],
       model: deployment,
-      max_tokens: 500 * numResponse,
+      max_tokens: 400 * numResponse,
       temperature: 0.8,
       stop: ["<end>"],
     });
 
     console.log(result);
 
-    const finalResponse = {};
+    let finalResponse;
 
-    result.choices.forEach(async (choice, idx) => {
-      try {
-        let response = choice.message.content;
-        console.log(`Persona ${idx}: ${response}`);
+    for (let i = 0; i < result.choices.length; i++) {
+      let response = result.choices[i].message.content;
+      console.log(`Persona ${i}: ${response}`);
 
-        const pRes = await JSON.parse(response);
-        finalResponse.personas = pRes.response;
-      } catch (err) {
-        console.log("Error parsing JSON: ", idx, err);
-      }
-    });
+      const pRes = await JSON.parse(response);
+      console.log("Parsed Response: ", pRes);
+      finalResponse = pRes.response;
+    }
 
     return finalResponse;
   } catch (err) {
@@ -81,11 +78,11 @@ async function generateConcerns(
 //   2
 // );
 
-generateConcerns(
-  "EcoTracker", 
-  "A carbon footprint tracker that helps users monitor and reduce their environmental impact.", 
-  "B2C", 
-  "SaaS"
-)
+// generateConcerns(
+//   "EcoTracker", 
+//   "A carbon footprint tracker that helps users monitor and reduce their environmental impact.", 
+//   "B2C", 
+//   "SaaS"
+// )
 
 module.exports = { generateConcerns };
