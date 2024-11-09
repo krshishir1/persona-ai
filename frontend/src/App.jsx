@@ -9,14 +9,20 @@ import {
 
 import Inputpage from './pages/inputpage';
 import Landingpage from './pages/Landingpage';
+import Product from './pages/Product';
+import HowItWorks from './pages/HowItWorks';
+
+import Contact from './pages/Contact';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      {/* Home Route */}
+    
       <Route index element={<Landingpage/>} />
+     <Route path="/input-page" element={<Inputpage />} />
 
-      {/* InputPage Route */}
-      <Route path="/input-page" element={<Inputpage />} />
+     <Route path="/product" element={<Product />} />
+        <Route path="/how-it-works" element={<HowItWorks />} />
+        <Route path="/contact" element={<Contact />} />
     </Route>
   )
 );
@@ -28,11 +34,8 @@ function App() {
 
   return (
     <>
-      <h2 className='text-xl'>Persona AI</h2>
       
       <RouterProvider router={router} />
-   
-
     </>
   )
 }
