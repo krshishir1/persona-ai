@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <div>
       
-      <header className="sticky top-0 w-full flex justify-center py-4">
+      <header className=" top-0 w-full flex justify-center py-4">
       <div className="w-11/12 max-w-5xl px-8 py-3 flex justify-between items-center bg-white shadow-md rounded-2xl">
       
       <img src={logo} alt="Logo" className='h-10 w-auto'/>
@@ -23,6 +23,7 @@ function Navbar() {
       </nav>
       </div>
       </header>
+      
     </div>
   )
 }
