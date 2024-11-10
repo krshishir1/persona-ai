@@ -93,7 +93,7 @@ const PersonaDisplay = () => {
   };
 
   return (
-    currentPersona && (
+    personaQuery.status === "success" && currentPersona && (
       <div className="flex justify-around items-center h-full mt-10 pb-20">
         <div>
           {navIndex > 0 && (
