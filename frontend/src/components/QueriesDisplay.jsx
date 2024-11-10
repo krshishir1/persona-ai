@@ -11,8 +11,7 @@ export default function QueriesDisplay() {
   const navigate = useNavigate();
 
   const concernQuery = useQuery({
-    queryKey: ["concerns"],
-    // enabled: Array.isArray(concerns) && concerns.length > 0,
+    queryKey: ["concern"],
     queryFn: async () => {
       try {
         console.log("Details available", details);
@@ -21,6 +20,8 @@ export default function QueriesDisplay() {
           navigate("/persona/details");
         }
 
+        if(concerns?.length) return {success: true}
+
         const request = {
           url: "http://localhost:4500/concerns",
           method: "POST",
@@ -28,12 +29,12 @@ export default function QueriesDisplay() {
         };
 
         const concernRes = await axios(request);
-        let concerns = concernRes.data.result;
-        concerns = concerns.sort((a, b) => b.is_highlighted - a.is_highlighted);
+        let nconcerns = concernRes.data.result;
+        nconcerns = nconcerns.sort((a, b) => b.is_highlighted - a.is_highlighted);
 
-        console.log(concerns);
+        console.log(nconcerns);
 
-        personaStore.setState({ concerns });
+        personaStore.setState({ concerns: nconcerns });
 
         return { success: true };
       } catch (err) {
@@ -46,7 +47,9 @@ export default function QueriesDisplay() {
     return navigate("/persona/details");
   }
 
-  if (concernQuery.status === "pending") {
+  console.log(concernQuery.status)
+
+  if (concernQuery.status === "pending" || concerns.length === 0) {
     return (
       <div className="pt-16 flex justify-center">
         <div className="flex flex-col items-center gap-2">

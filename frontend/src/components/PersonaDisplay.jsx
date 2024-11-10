@@ -18,6 +18,7 @@ const PersonaDisplay = () => {
 
   const personaQuery = useQuery({
     queryKey: ["persona"],
+    // refetchOnMount: true,
     queryFn: async () => {
       try {
         if (!details.brandName) {
@@ -65,11 +66,14 @@ const PersonaDisplay = () => {
     }
   }, [personas, navIndex]);
 
+  console.log(personaQuery.status)
+
+
   if (personaQuery.status === "error") {
     return navigate("/persona/details");
   }
 
-  if (personaQuery.status === "pending") {
+  if (personaQuery.status === "pending" || !currentPersona) {
     return (
       <div className="pt-16 flex justify-center">
         <div className="flex flex-col items-center gap-2">
