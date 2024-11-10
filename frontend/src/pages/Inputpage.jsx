@@ -5,6 +5,7 @@ function InputPage() {
   return (
     <div>
       <Form /> 
+      
     </div>
   );
 }
