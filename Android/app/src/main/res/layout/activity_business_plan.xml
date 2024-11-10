@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.BusinessPlanActivity">
+
+    <!-- Title Text -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Business Plan Details"
+        android:textSize="28sp"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Business Plan Section -->
+    <TextView
+        android:id="@+id/businessPlanText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Business Plan:"
+        android:padding="10dp"
+        android:background="#DAF6F6"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Monetization Strategy Section -->
+    <TextView
+        android:id="@+id/monetizationStrategyText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Monetization Strategy: "
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:background="#DAF6F6"/>
+
+</LinearLayout>
